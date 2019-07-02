@@ -1,0 +1,16 @@
+type Bird {
+  id: ID! @id @unique
+  name: String!
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+  scores: [Score!]!
+}
+
+type Score {
+  id: ID! @id @unique
+  rating: Int!
+  comment: String
+  bird: Bird!
+}

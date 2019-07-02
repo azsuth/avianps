@@ -1,0 +1,14 @@
+# import Bird from "./generated/prisma.graphql"
+# import Score from "./generated/prisma.graphql"
+
+type Query {
+  bird(id: ID!): Bird!
+  birds: [Bird!]!
+  scoresByBird(id: ID!): [Score!]!
+}
+
+type Mutation {
+  createScore(rating: Int!, comment: String, birdId: ID!): Score
+  deleteScore(id: ID!): Score
+  updateScore(id: ID!, rating: Int, comment: String): Score
+}

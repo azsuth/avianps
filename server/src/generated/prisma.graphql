@@ -1,0 +1,491 @@
+type AggregateBird {
+  count: Int!
+}
+
+type AggregateScore {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Bird {
+  id: ID!
+  name: String!
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+  scores(where: ScoreWhereInput, orderBy: ScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Score!]
+}
+
+type BirdConnection {
+  pageInfo: PageInfo!
+  edges: [BirdEdge]!
+  aggregate: AggregateBird!
+}
+
+input BirdCreateInput {
+  name: String!
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+  scores: ScoreCreateManyWithoutBirdInput
+}
+
+input BirdCreateOneWithoutScoresInput {
+  create: BirdCreateWithoutScoresInput
+  connect: BirdWhereUniqueInput
+}
+
+input BirdCreateWithoutScoresInput {
+  name: String!
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+}
+
+type BirdEdge {
+  node: Bird!
+  cursor: String!
+}
+
+enum BirdOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  scientificName_ASC
+  scientificName_DESC
+  description_ASC
+  description_DESC
+  conservationStatus_ASC
+  conservationStatus_DESC
+  imageUrl_ASC
+  imageUrl_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type BirdPreviousValues {
+  id: ID!
+  name: String!
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+}
+
+type BirdSubscriptionPayload {
+  mutation: MutationType!
+  node: Bird
+  updatedFields: [String!]
+  previousValues: BirdPreviousValues
+}
+
+input BirdSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: BirdWhereInput
+  AND: [BirdSubscriptionWhereInput!]
+  OR: [BirdSubscriptionWhereInput!]
+  NOT: [BirdSubscriptionWhereInput!]
+}
+
+input BirdUpdateInput {
+  name: String
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+  scores: ScoreUpdateManyWithoutBirdInput
+}
+
+input BirdUpdateManyMutationInput {
+  name: String
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+}
+
+input BirdUpdateOneRequiredWithoutScoresInput {
+  create: BirdCreateWithoutScoresInput
+  update: BirdUpdateWithoutScoresDataInput
+  upsert: BirdUpsertWithoutScoresInput
+  connect: BirdWhereUniqueInput
+}
+
+input BirdUpdateWithoutScoresDataInput {
+  name: String
+  scientificName: String
+  description: String
+  conservationStatus: String
+  imageUrl: String
+}
+
+input BirdUpsertWithoutScoresInput {
+  update: BirdUpdateWithoutScoresDataInput!
+  create: BirdCreateWithoutScoresInput!
+}
+
+input BirdWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  scientificName: String
+  scientificName_not: String
+  scientificName_in: [String!]
+  scientificName_not_in: [String!]
+  scientificName_lt: String
+  scientificName_lte: String
+  scientificName_gt: String
+  scientificName_gte: String
+  scientificName_contains: String
+  scientificName_not_contains: String
+  scientificName_starts_with: String
+  scientificName_not_starts_with: String
+  scientificName_ends_with: String
+  scientificName_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  conservationStatus: String
+  conservationStatus_not: String
+  conservationStatus_in: [String!]
+  conservationStatus_not_in: [String!]
+  conservationStatus_lt: String
+  conservationStatus_lte: String
+  conservationStatus_gt: String
+  conservationStatus_gte: String
+  conservationStatus_contains: String
+  conservationStatus_not_contains: String
+  conservationStatus_starts_with: String
+  conservationStatus_not_starts_with: String
+  conservationStatus_ends_with: String
+  conservationStatus_not_ends_with: String
+  imageUrl: String
+  imageUrl_not: String
+  imageUrl_in: [String!]
+  imageUrl_not_in: [String!]
+  imageUrl_lt: String
+  imageUrl_lte: String
+  imageUrl_gt: String
+  imageUrl_gte: String
+  imageUrl_contains: String
+  imageUrl_not_contains: String
+  imageUrl_starts_with: String
+  imageUrl_not_starts_with: String
+  imageUrl_ends_with: String
+  imageUrl_not_ends_with: String
+  scores_every: ScoreWhereInput
+  scores_some: ScoreWhereInput
+  scores_none: ScoreWhereInput
+  AND: [BirdWhereInput!]
+  OR: [BirdWhereInput!]
+  NOT: [BirdWhereInput!]
+}
+
+input BirdWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createBird(data: BirdCreateInput!): Bird!
+  updateBird(data: BirdUpdateInput!, where: BirdWhereUniqueInput!): Bird
+  updateManyBirds(data: BirdUpdateManyMutationInput!, where: BirdWhereInput): BatchPayload!
+  upsertBird(where: BirdWhereUniqueInput!, create: BirdCreateInput!, update: BirdUpdateInput!): Bird!
+  deleteBird(where: BirdWhereUniqueInput!): Bird
+  deleteManyBirds(where: BirdWhereInput): BatchPayload!
+  createScore(data: ScoreCreateInput!): Score!
+  updateScore(data: ScoreUpdateInput!, where: ScoreWhereUniqueInput!): Score
+  updateManyScores(data: ScoreUpdateManyMutationInput!, where: ScoreWhereInput): BatchPayload!
+  upsertScore(where: ScoreWhereUniqueInput!, create: ScoreCreateInput!, update: ScoreUpdateInput!): Score!
+  deleteScore(where: ScoreWhereUniqueInput!): Score
+  deleteManyScores(where: ScoreWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  bird(where: BirdWhereUniqueInput!): Bird
+  birds(where: BirdWhereInput, orderBy: BirdOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bird]!
+  birdsConnection(where: BirdWhereInput, orderBy: BirdOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BirdConnection!
+  score(where: ScoreWhereUniqueInput!): Score
+  scores(where: ScoreWhereInput, orderBy: ScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Score]!
+  scoresConnection(where: ScoreWhereInput, orderBy: ScoreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ScoreConnection!
+  node(id: ID!): Node
+}
+
+type Score {
+  id: ID!
+  rating: Int!
+  comment: String
+  bird: Bird!
+}
+
+type ScoreConnection {
+  pageInfo: PageInfo!
+  edges: [ScoreEdge]!
+  aggregate: AggregateScore!
+}
+
+input ScoreCreateInput {
+  rating: Int!
+  comment: String
+  bird: BirdCreateOneWithoutScoresInput!
+}
+
+input ScoreCreateManyWithoutBirdInput {
+  create: [ScoreCreateWithoutBirdInput!]
+  connect: [ScoreWhereUniqueInput!]
+}
+
+input ScoreCreateWithoutBirdInput {
+  rating: Int!
+  comment: String
+}
+
+type ScoreEdge {
+  node: Score!
+  cursor: String!
+}
+
+enum ScoreOrderByInput {
+  id_ASC
+  id_DESC
+  rating_ASC
+  rating_DESC
+  comment_ASC
+  comment_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ScorePreviousValues {
+  id: ID!
+  rating: Int!
+  comment: String
+}
+
+input ScoreScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  rating: Int
+  rating_not: Int
+  rating_in: [Int!]
+  rating_not_in: [Int!]
+  rating_lt: Int
+  rating_lte: Int
+  rating_gt: Int
+  rating_gte: Int
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  AND: [ScoreScalarWhereInput!]
+  OR: [ScoreScalarWhereInput!]
+  NOT: [ScoreScalarWhereInput!]
+}
+
+type ScoreSubscriptionPayload {
+  mutation: MutationType!
+  node: Score
+  updatedFields: [String!]
+  previousValues: ScorePreviousValues
+}
+
+input ScoreSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ScoreWhereInput
+  AND: [ScoreSubscriptionWhereInput!]
+  OR: [ScoreSubscriptionWhereInput!]
+  NOT: [ScoreSubscriptionWhereInput!]
+}
+
+input ScoreUpdateInput {
+  rating: Int
+  comment: String
+  bird: BirdUpdateOneRequiredWithoutScoresInput
+}
+
+input ScoreUpdateManyDataInput {
+  rating: Int
+  comment: String
+}
+
+input ScoreUpdateManyMutationInput {
+  rating: Int
+  comment: String
+}
+
+input ScoreUpdateManyWithoutBirdInput {
+  create: [ScoreCreateWithoutBirdInput!]
+  delete: [ScoreWhereUniqueInput!]
+  connect: [ScoreWhereUniqueInput!]
+  disconnect: [ScoreWhereUniqueInput!]
+  update: [ScoreUpdateWithWhereUniqueWithoutBirdInput!]
+  upsert: [ScoreUpsertWithWhereUniqueWithoutBirdInput!]
+  deleteMany: [ScoreScalarWhereInput!]
+  updateMany: [ScoreUpdateManyWithWhereNestedInput!]
+}
+
+input ScoreUpdateManyWithWhereNestedInput {
+  where: ScoreScalarWhereInput!
+  data: ScoreUpdateManyDataInput!
+}
+
+input ScoreUpdateWithoutBirdDataInput {
+  rating: Int
+  comment: String
+}
+
+input ScoreUpdateWithWhereUniqueWithoutBirdInput {
+  where: ScoreWhereUniqueInput!
+  data: ScoreUpdateWithoutBirdDataInput!
+}
+
+input ScoreUpsertWithWhereUniqueWithoutBirdInput {
+  where: ScoreWhereUniqueInput!
+  update: ScoreUpdateWithoutBirdDataInput!
+  create: ScoreCreateWithoutBirdInput!
+}
+
+input ScoreWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  rating: Int
+  rating_not: Int
+  rating_in: [Int!]
+  rating_not_in: [Int!]
+  rating_lt: Int
+  rating_lte: Int
+  rating_gt: Int
+  rating_gte: Int
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  bird: BirdWhereInput
+  AND: [ScoreWhereInput!]
+  OR: [ScoreWhereInput!]
+  NOT: [ScoreWhereInput!]
+}
+
+input ScoreWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  bird(where: BirdSubscriptionWhereInput): BirdSubscriptionPayload
+  score(where: ScoreSubscriptionWhereInput): ScoreSubscriptionPayload
+}

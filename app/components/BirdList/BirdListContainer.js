@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { navigateToDetails } from 'app/actions/bird';
 
 import BirdList from './BirdList';

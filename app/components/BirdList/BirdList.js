@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import BirdRow from './BirdRow';
 
@@ -16,6 +17,11 @@ const BirdList = ({ birds, onClickDetails }) => {
       ))}
     </div>
   );
+};
+
+BirdList.propTypes = {
+  birds: PropTypes.array.isRequired,
+  onClickDetails: PropTypes.func.isRequired
 };
 
 export default BirdList;

@@ -16,7 +16,7 @@ const BirdRow = ({ bird, onClickDetails }) => {
           <span className="BirdRowName__scientific">({scientificName})</span>
         </div>
 
-        <span className="BirdRowContent__endangered">{conservationStatus}</span>
+        <span className="BirdRowContent__conservation-status">{conservationStatus}</span>
       </div>
 
       <button

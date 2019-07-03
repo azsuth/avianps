@@ -4,8 +4,10 @@
  * below and get started!
  */
 
+@import 'app/styles/_colors.scss';
+
 body {
-  background-color: #fafafa;
+  background-color: $background-color;
   color: #444;
   font-family: sans-serif;
   margin: 0;

@@ -1,5 +1,7 @@
 import graphQLClient from '../client';
 
+import Bird from 'app/model/bird';
+
 export const getBirdsService = (client = graphQLClient) => {
   const query = `
   {
@@ -13,7 +15,10 @@ export const getBirdsService = (client = graphQLClient) => {
     }
   }`;
 
-  return client.request(query).then(response => response.birds);
+  return client
+    .request(query)
+    .then(response => response.birds)
+    .then(rawBirds => rawBirds.map(rawBird => new Bird(rawBird)));
 };
 
 export const createScoreService = (rating, client = graphQLClient) => {
@@ -22,7 +27,7 @@ export const createScoreService = (rating, client = graphQLClient) => {
     createScore(rating: $rating, comment: $comment, birdId: $birdId) {
       id
       rating
-      comment      
+      comment
     }
   }`;
 

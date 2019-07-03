@@ -47,4 +47,9 @@
     line-height: 1.75em;
     text-align: justify;
   }
+
+  &__separator {
+    padding-bottom: 1em;
+    border-bottom: 1px solid $color-primary;
+  }
 }

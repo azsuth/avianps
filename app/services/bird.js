@@ -12,6 +12,11 @@ export const getBirdsService = (client = graphQLClient) => {
       description
       conservationStatus
       imageUrl
+      scores {
+        id
+        rating
+        comment
+      }
     }
   }`;
 

@@ -30,6 +30,30 @@ class Bird {
   get scores() {
     return this._bird.scores;
   }
+
+  get bps() {
+    const numScores = this._bird.scores.length;
+
+    if (numScores === 0) {
+      return 0;
+    }
+
+    const results = this._bird.scores.reduce(
+      (results, score) => ({
+        promoters: results.promoters + (score.rating > 8 ? 1 : 0),
+        detractors: results.detractors + (score.rating < 7 ? 1 : 0)
+      }),
+      {
+        promoters: 0,
+        detractors: 0
+      }
+    );
+
+    const percentPromoters = results.promoters / numScores * 100;
+    const percentDetractors = results.detractors / numScores * 100;
+
+    return percentPromoters - percentDetractors;
+  }
 }
 
 export default Bird;

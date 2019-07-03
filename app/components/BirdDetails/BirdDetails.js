@@ -15,7 +15,19 @@ const BirdDetails = ({ bird }) => {
     scores
   } = bird;
 
-  console.log('andrew', bird);
+  const renderBirdScores = () => {
+    if (scores && scores.length > 0) {
+      return scores.map(score => (
+        <div className="BirdDetailsScores__row" key={score.id}>
+          <BirdScoreRow score={score} />
+        </div>
+      ));
+    }
+
+    return (
+      <span className="BirdDetailsScores__empty">No reviews yet</span>
+    )
+  };
 
   return (
     <div className="BirdDetails">
@@ -43,13 +55,7 @@ const BirdDetails = ({ bird }) => {
           Ratings
         </h2>
 
-        <div className="BirdDetailsScores">
-          {scores.map(score => (
-            <div className="BirdDetailsScores__row" key={score.id}>
-              <BirdScoreRow score={score} />
-            </div>
-          ))}
-        </div>
+        <div className="BirdDetailsScores">{renderBirdScores()}</div>
       </main>
     </div>
   );

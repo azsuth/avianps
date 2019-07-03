@@ -10,3 +10,8 @@ export const getBirds = (service = getBirdsService) => dispatch => {
     });
   });
 };
+
+export const navigateToDetails = (birdId, history) => () => {
+  // console.log(birdId, history);
+  history.push(`/${birdId}`)
+};

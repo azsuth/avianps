@@ -11,11 +11,28 @@ describe('the bird reducer', () => {
   });
 
   it('should populate birds for the NEW_BIRDS action', () => {
+    const birds = [];
+
     const state = reducer(undefined, {
       type: NEW_BIRDS,
-      payload: 'test payload'
+      payload: birds
     });
 
-    expect(state.birds).to.equal('test payload');
+    expect(state.birds).to.equal(birds);
+  });
+
+  it('should populate the birdsById for the NEW_BIRDS action', () => {
+    const birds = [
+      { id: 'id_1', name: 'name_1' },
+      { id: 'id_2', name: 'name_2' }
+    ];
+
+    const state = reducer(undefined, {
+      type: NEW_BIRDS,
+      payload: birds
+    });
+
+    expect(state.birdsById.id_1.name).to.equal('name_1');
+    expect(state.birdsById.id_2.name).to.equal('name_2');
   });
 });

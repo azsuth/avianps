@@ -5,6 +5,10 @@ export const getBirdsService = (client = graphQLClient) => {
     birds {
       id
       name
+      scientificName
+      description
+      conservationStatus
+      imageUrl
     }
   }`;
 

@@ -1,0 +1,32 @@
+.BirdRow {
+  display: flex;
+  text-align: left;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: .5em;
+
+  &__image {
+    width: 10em;
+  }
+}
+
+.BirdRowName {
+  margin-bottom: 0.2em;
+
+  &__simple {
+    margin-right: 0.2em;
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  &__scientific {
+    font-style: italic;
+  }
+}
+
+.BirdRowContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  flex-grow: 1;
+}

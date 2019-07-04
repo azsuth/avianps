@@ -1,13 +1,10 @@
 .BirdRow {
   display: flex;
+  flex-direction: column;
   text-align: left;
   padding: 1em;
   border: 1px solid black;
-  border-radius: .5em;
-
-  &__image {
-    width: 10em;
-  }
+  border-radius: 0.5em;
 }
 
 .BirdRowName {
@@ -15,7 +12,7 @@
 
   &__simple {
     margin-right: 0.2em;
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: 700;
   }
 
@@ -26,7 +23,23 @@
 
 .BirdRowContent {
   display: flex;
-  flex-direction: column;
-  margin-left: 1em;
+  margin-bottom: 1em;
+
+  &__image {
+    width: 10em;
+    margin-right: 1em;
+  }
+}
+
+.BirdRowRightContent {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  &__bps {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-grow: 1;
+  }
 }

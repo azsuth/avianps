@@ -1,22 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import BPS from 'app/components/BPS';
+import Bird from 'app/model/bird';
+
 import 'app/styles/BirdRow.scss';
 
 const BirdRow = ({ bird, onClickDetails }) => {
-  const { id, name, scientificName, conservationStatus, imageUrl } = bird;
+  const { id, name, scientificName, conservationStatus, imageUrl, bps } = bird;
 
   return (
     <div className="BirdRow">
-      <img className="BirdRow__image" src={imageUrl} />
-
       <div className="BirdRowContent">
-        <div className="BirdRowName">
-          <span className="BirdRowName__simple">{name}</span>
-          <span className="BirdRowName__scientific">({scientificName})</span>
-        </div>
+        <img className="BirdRowContent__image" src={imageUrl} />
 
-        <span className="BirdRowContent__conservation-status">{conservationStatus}</span>
+        <div className="BirdRowRightContent">
+          <div className="BirdRowName">
+            <span className="BirdRowName__simple">{name}</span>
+            <span className="BirdRowName__scientific">({scientificName})</span>
+          </div>
+
+          <span className="BirdRowRightContent__conservation-status">
+            {conservationStatus}
+          </span>
+
+          <div className="BirdRowRightContent__bps">
+            <BPS bps={bps} />
+          </div>
+        </div>
       </div>
 
       <button
@@ -30,7 +41,7 @@ const BirdRow = ({ bird, onClickDetails }) => {
 };
 
 BirdRow.propTypes = {
-  bird: PropTypes.object.isRequired,
+  bird: PropTypes.instanceOf(Bird).isRequired,
   onClickDetails: PropTypes.func.isRequired
 };
 

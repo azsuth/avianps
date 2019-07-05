@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import BPS from 'app/components/BPS';
 import BirdScoreRow from 'app/components/BirdDetails/BirdScoreRow';
 
 import 'app/styles/BirdDetails.scss';
@@ -12,7 +13,8 @@ const BirdDetails = ({ bird }) => {
     imageUrl,
     description,
     conservationStatus,
-    scores
+    scores,
+    bps
   } = bird;
 
   const renderBirdScores = () => {
@@ -24,9 +26,7 @@ const BirdDetails = ({ bird }) => {
       ));
     }
 
-    return (
-      <span className="BirdDetailsScores__empty">No reviews yet</span>
-    )
+    return <span className="BirdDetailsScores__empty">No reviews yet</span>;
   };
 
   return (
@@ -42,16 +42,21 @@ const BirdDetails = ({ bird }) => {
       </header>
 
       <main className="BirdDetailsMain">
-        <span className="BirdDetailsMain__conservation-status">
-          {conservationStatus}
-        </span>
+        <h2 className="BirdDetailsMain__info-label BirdDetails__separator">Info</h2>
+        <div className="BirdDetailsInfo">
+          <BPS bps={bps} />
 
-        <h2 className="BirdDetailsMain__description-label BirdDetailsMain__separator">
+          <span className="BirdDetailsInfo__conservation-status">
+            {conservationStatus}
+          </span>
+        </div>
+
+        <h2 className="BirdDetailsMain__description-label BirdDetails__separator">
           Description
         </h2>
         <p className="BirdDetailsMain__description">{description}</p>
 
-        <h2 className="BirdDetailsMain__ratings-label BirdDetailsMain__separator">
+        <h2 className="BirdDetailsMain__ratings-label BirdDetails__separator">
           Ratings
         </h2>
 

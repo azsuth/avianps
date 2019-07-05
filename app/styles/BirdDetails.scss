@@ -3,6 +3,11 @@
 .BirdDetails {
   font-size: 1.3em;
   line-height: 1.75em;
+
+  &__separator {
+    padding-bottom: 1em;
+    border-bottom: 1px solid $color-primary;
+  }
 }
 
 .BirdDetailsHeader {
@@ -44,8 +49,10 @@
   }
 }
 
-.BirdDetailsMain {
-  padding: 2em;
+.BirdDetailsInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &__conservation-status {
     font-style: italic;
@@ -53,14 +60,13 @@
     display: block;
     text-align: end;
   }
+}
+
+.BirdDetailsMain {
+  padding: 2em;
 
   &__description {
     text-align: justify;
-  }
-
-  &__separator {
-    padding-bottom: 1em;
-    border-bottom: 1px solid $color-primary;
   }
 }
 

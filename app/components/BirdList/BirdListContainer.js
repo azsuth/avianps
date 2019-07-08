@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { navigateToDetails } from 'app/actions/bird';
+import { navigateToDetails, navigateToRating } from 'app/actions/bird';
 
 import BirdList from 'app/components/BirdList/BirdList';
 
-const BirdListContainer = ({ birds, navigateToDetails, history }) => {
+const BirdListContainer = ({
+  birds,
+  navigateToDetails,
+  navigateToRating,
+  history
+}) => {
   const [sortBy, setSortBy] = useState(null);
 
   const onClickDetails = birdId => {
     navigateToDetails(birdId, history);
+  };
+
+  const onClickRate = birdId => {
+    navigateToRating(birdId, history);
   };
 
   const onSortBy = newSort => {
@@ -20,6 +29,7 @@ const BirdListContainer = ({ birds, navigateToDetails, history }) => {
       {...{
         birds: sortBirds(birds, sortBy),
         onClickDetails,
+        onClickRate,
         onSortBy,
         sortBy,
         sortTypes: [
@@ -57,7 +67,7 @@ export const sortBirds = (birds, sortBy) => {
   });
 
   return sortedBirds;
-}
+};
 
 const mapStateToProps = ({ Birds }) => ({
   birds: Birds.birds
@@ -65,5 +75,5 @@ const mapStateToProps = ({ Birds }) => ({
 
 export default connect(
   mapStateToProps,
-  { navigateToDetails }
+  { navigateToDetails, navigateToRating }
 )(BirdListContainer);

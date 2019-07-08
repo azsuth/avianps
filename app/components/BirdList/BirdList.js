@@ -5,7 +5,14 @@ import BirdRow from 'app/components/BirdList/BirdRow';
 
 import 'app/styles/BirdList.scss';
 
-const BirdList = ({ birds, onClickDetails, onSortBy, sortBy, sortTypes }) => {
+const BirdList = ({
+  birds,
+  onClickDetails,
+  onClickRate,
+  onSortBy,
+  sortBy,
+  sortTypes
+}) => {
   const renderSortButtons = () => {
     return sortTypes.map(sortType => (
       <button
@@ -33,7 +40,11 @@ const BirdList = ({ birds, onClickDetails, onSortBy, sortBy, sortTypes }) => {
 
       {birds.map(bird => (
         <div className="BirdList__row" key={bird.id}>
-          <BirdRow bird={bird} onClickDetails={onClickDetails} />
+          <BirdRow
+            bird={bird}
+            onClickDetails={onClickDetails}
+            onClickRate={onClickRate}
+          />
         </div>
       ))}
     </div>
@@ -43,6 +54,7 @@ const BirdList = ({ birds, onClickDetails, onSortBy, sortBy, sortTypes }) => {
 BirdList.propTypes = {
   birds: PropTypes.array.isRequired,
   onClickDetails: PropTypes.func.isRequired,
+  onClickRate: PropTypes.func.isRequired,
   onSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string,
   sortTypes: PropTypes.arrayOf(PropTypes.object).isRequired

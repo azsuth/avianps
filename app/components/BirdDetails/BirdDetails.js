@@ -56,15 +56,23 @@ const BirdDetails = ({ bird, onClickRate }) => {
           </span>
         </div>
 
-        <div className="BirdDetailsMain__description-container BirdDetails__separator">
-          <h2 className="BirdDetailsMain__description-label">Description</h2>
-          <button className="BirdDetailsMain__rate-button btn" onClick={() => onClickRate(id)}>Rate</button>
-        </div>
+        <h2 className="BirdDetailsMain__description-label BirdDetails__separator">
+          Description
+        </h2>
         <p className="BirdDetailsMain__description">{description}</p>
 
-        <h2 className="BirdDetailsMain__ratings-label BirdDetails__separator">
-          Ratings
-        </h2>
+        <div className="BirdDetailsMain__ratings-container BirdDetails__separator">
+          <h2 className="BirdDetailsMain__ratings-label">
+            Ratings
+          </h2>
+
+          <button
+            className="BirdDetailsMain__rate-button btn"
+            onClick={() => onClickRate(id)}
+          >
+            Rate
+          </button>
+        </div>
 
         <div className="BirdDetailsScores">{renderBirdScores()}</div>
       </main>

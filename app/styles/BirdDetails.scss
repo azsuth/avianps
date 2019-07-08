@@ -6,6 +6,8 @@
 
   &__separator {
     padding-bottom: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
     border-bottom: 1px solid $color-primary;
   }
 }
@@ -63,16 +65,21 @@
 }
 
 .BirdDetailsMain {
-  padding: 2em;
+  padding: 0 2em;
 
-  &__description-container {
+  &__description {
+    margin: 0;
+    text-align: justify;
+  }
+
+  &__ratings-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  &__description {
-    text-align: justify;
+  &__ratings-label {
+    margin: 0;
   }
 }
 

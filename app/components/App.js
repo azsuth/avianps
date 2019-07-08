@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import BirdListContainer from 'app/components/BirdList/BirdListContainer';
 import BirdDetailsContainer from 'app/components/BirdDetails/BirdDetailsContainer';
+import BirdRatingContainer from 'app/components/BirdRating/BirdRatingContainer';
 
 import { getBirds } from 'app/actions/bird';
 
@@ -14,15 +15,18 @@ const App = ({ getBirds, numBirds }) => {
 
   return (
     <div className="App">
-      <Switch>
-        <Route path="/" exact component={BirdListContainer} />
-
-        {numBirds > 0 ? (
+      {numBirds > 0 ? (
+        <Switch>
+          <Route path="/" exact component={BirdListContainer} />
+          <Route path="/:birdId/rate" component={BirdRatingContainer} />
           <Route path="/:birdId" component={BirdDetailsContainer} />
-        ) : (
+        </Switch>
+      ) : (
+        <Switch>
+          <Route path="/" exact component={BirdListContainer} />
           <Route render={() => <Redirect to="/" />} />
-        )}
-      </Switch>
+        </Switch>
+      )}
     </div>
   );
 };

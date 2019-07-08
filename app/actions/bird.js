@@ -12,6 +12,9 @@ export const getBirds = (service = getBirdsService) => dispatch => {
 };
 
 export const navigateToDetails = (birdId, history) => () => {
-  // console.log(birdId, history);
-  history.push(`/${birdId}`)
+  history.push(`/${birdId}`);
+};
+
+export const navigateToRating = (birdId, history) => () => {
+  history.push(`/${birdId}/rate`);
 };

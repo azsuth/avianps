@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Bird from 'app/model/bird';
+
 import BPS from 'app/components/common/BPS';
 import BirdScoreRow from 'app/components/BirdDetails/BirdScoreRow';
 
 import 'app/styles/BirdDetails.scss';
 
-const BirdDetails = ({ bird }) => {
+const BirdDetails = ({ bird, onClickRate }) => {
   const {
+    id,
     name,
     scientificName,
     imageUrl,
@@ -42,7 +45,9 @@ const BirdDetails = ({ bird }) => {
       </header>
 
       <main className="BirdDetailsMain">
-        <h2 className="BirdDetailsMain__info-label BirdDetails__separator">Info</h2>
+        <h2 className="BirdDetailsMain__info-label BirdDetails__separator">
+          Info
+        </h2>
         <div className="BirdDetailsInfo">
           <BPS bps={bps} />
 
@@ -51,9 +56,10 @@ const BirdDetails = ({ bird }) => {
           </span>
         </div>
 
-        <h2 className="BirdDetailsMain__description-label BirdDetails__separator">
-          Description
-        </h2>
+        <div className="BirdDetailsMain__description-container BirdDetails__separator">
+          <h2 className="BirdDetailsMain__description-label">Description</h2>
+          <button className="BirdDetailsMain__rate-button" onClick={() => onClickRate(id)}>Rate</button>
+        </div>
         <p className="BirdDetailsMain__description">{description}</p>
 
         <h2 className="BirdDetailsMain__ratings-label BirdDetails__separator">
@@ -67,7 +73,8 @@ const BirdDetails = ({ bird }) => {
 };
 
 BirdDetails.propTypes = {
-  bird: PropTypes.object.isRequired
+  bird: PropTypes.instanceOf(Bird).isRequired,
+  onClickRate: PropTypes.func.isRequired
 };
 
 export default BirdDetails;

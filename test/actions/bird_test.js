@@ -1,6 +1,10 @@
 import sinon from 'sinon';
 
-import { getBirds, navigateToDetails } from 'app/actions/bird';
+import {
+  getBirds,
+  navigateToDetails,
+  navigateToRating
+} from 'app/actions/bird';
 
 import { NEW_BIRDS } from 'app/actions/types';
 
@@ -42,5 +46,15 @@ describe('the navigateToDetails function', () => {
     navigateToDetails('bird_id', { push })();
 
     push.should.have.been.calledWith('/bird_id');
+  });
+});
+
+describe('the navigateToRating function', () => {
+  it('should call push on the history object', () => {
+    const push = sinon.fake();
+
+    navigateToRating('bird_id', { push })();
+
+    push.should.have.been.calledWith('/bird_id/rate');
   });
 });

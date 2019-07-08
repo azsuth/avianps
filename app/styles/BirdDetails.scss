@@ -65,6 +65,12 @@
 .BirdDetailsMain {
   padding: 2em;
 
+  &__description-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__description {
     text-align: justify;
   }

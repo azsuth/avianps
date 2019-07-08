@@ -47,7 +47,7 @@ const BirdRating = ({ bird, onClickSubmit }) => {
     <div className="BirdRating">
       <header>
         <h1 className="BirdRating__header">Rate the {name}</h1>
-        <h2 className="BirdRating__sub-header">On a scale from 0 to 10</h2>
+        <h2 className="BirdRating__sub-header">How likely is it that you would recommend this bird to a friend or collegue?</h2>
       </header>
 
       <main>

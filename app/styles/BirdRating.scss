@@ -10,11 +10,12 @@
   padding: 2em;
 
   &__sub-header {
+    margin: 0 2em;
     margin-bottom: 0;
   }
 
   &__buttons {
-    margin-top: 2em;
+    margin: 2em 2em 0 2em;
 
     & :not(:last-child) {
       margin-right: 1em;

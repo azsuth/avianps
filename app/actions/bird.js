@@ -1,17 +1,24 @@
 import { getBirdsService, createScoreService } from 'app/services/bird';
 
-import { NEW_BIRDS, LOADING } from 'app/actions/types';
+import { NEW_BIRDS, LOADING, ERROR } from 'app/actions/types';
 
 export const getBirds = (service = getBirdsService) => dispatch => {
   return new Promise(resolve => {
-    service().then(birds => {
-      dispatch({
-        type: NEW_BIRDS,
-        payload: birds
-      });
+    service()
+      .then(birds => {
+        dispatch({
+          type: NEW_BIRDS,
+          payload: birds
+        });
 
-      resolve();
-    });
+        resolve();
+      })
+      .catch(err => {
+        dispatch({
+          type: ERROR,
+          payload: err
+        });
+      });
   });
 };
 
@@ -29,7 +36,13 @@ export const rateBird = (
 
   service(birdId, rating, comment)
     .then(() => dispatch(getBirds()))
-    .then(() => history.goBack());
+    .then(() => history.goBack())
+    .catch(err => {
+      dispatch({
+        type: ERROR,
+        payload: err
+      });
+    });
 };
 
 export const navigateToDetails = (birdId, history) => () => {

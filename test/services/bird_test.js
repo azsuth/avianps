@@ -2,6 +2,7 @@ import sinon from 'sinon';
 
 import { getBirdsService, createScoreService } from 'app/services/bird';
 import Bird from 'app/model/bird';
+import { fail } from 'assert';
 
 describe('the getBirdsService function', () => {
   it('should call the client request function', () => {
@@ -31,6 +32,19 @@ describe('the getBirdsService function', () => {
       done();
     });
   });
+
+  it('should throw an error if the request fails', done => {
+    const request = sinon.fake.rejects();
+
+    getBirdsService({ request })
+      .then(() => {
+        done(new Error('failed'));
+      })
+      .catch(err => {
+        expect(err).to.be.instanceOf(Error);
+        done();
+      });
+  });
 });
 
 describe('the createScoreService function', () => {
@@ -49,5 +63,18 @@ describe('the createScoreService function', () => {
 
     expect(response).to.be.instanceOf(Promise);
     expect(response.then).to.be.instanceOf(Function);
+  });
+
+  it('should throw an error if the request fails', done => {
+    const request = sinon.fake.rejects();
+
+    createScoreService('a_bird_id', 8, 'comment', { request })
+      .then(() => {
+        done(new Error('failed'));
+      })
+      .catch(err => {
+        expect(err).to.be.instanceOf(Error);
+        done();
+      });
   });
 });

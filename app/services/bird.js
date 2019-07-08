@@ -1,4 +1,4 @@
-import graphQLClient from '../client';
+import graphQLClient from 'app/client';
 
 import Bird from 'app/model/bird';
 
@@ -23,7 +23,10 @@ export const getBirdsService = (client = graphQLClient) => {
   return client
     .request(query)
     .then(response => response.birds)
-    .then(rawBirds => rawBirds.map(rawBird => new Bird(rawBird)));
+    .then(rawBirds => rawBirds.map(rawBird => new Bird(rawBird)))
+    .catch(() => {
+      throw new Error('Error loading birds!');
+    });
 };
 
 export const createScoreService = (
@@ -43,5 +46,8 @@ export const createScoreService = (
 
   return client
     .request(query, { birdId, rating, comment })
-    .then(response => response.createScore);
+    .then(response => response.createScore)
+    .catch(() => {
+      throw new Error('Error submitting new rating!');
+    });
 };

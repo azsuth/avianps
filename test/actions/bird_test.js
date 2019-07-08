@@ -3,10 +3,11 @@ import sinon from 'sinon';
 import {
   getBirds,
   navigateToDetails,
-  navigateToRating
+  navigateToRating,
+  rateBird
 } from 'app/actions/bird';
 
-import { NEW_BIRDS } from 'app/actions/types';
+import { NEW_BIRDS, ERROR, LOADING } from 'app/actions/types';
 
 describe('the getBirds function', () => {
   let service;
@@ -37,6 +38,20 @@ describe('the getBirds function', () => {
       done();
     });
   });
+
+  it('should dispatch an error', done => {
+    getBirds(sinon.fake.rejects())(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.called;
+
+      const dispatchedAction = dispatch.firstCall.args[0];
+
+      expect(dispatchedAction.type).to.equal(ERROR);
+
+      done();
+    });
+  });
 });
 
 describe('the navigateToDetails function', () => {
@@ -56,5 +71,78 @@ describe('the navigateToRating function', () => {
     navigateToRating('bird_id', { push })();
 
     push.should.have.been.calledWith('/bird_id/rate');
+  });
+});
+
+describe('the rateBird function', () => {
+  let service;
+  let dispatch;
+  let goBack;
+
+  beforeEach(() => {
+    service = sinon.fake.resolves();
+    dispatch = sinon.fake();
+    goBack = sinon.fake();
+  });
+
+  it('should dispatch the loading action', () => {
+    rateBird('bird_id_1', 9, 'comment', { goBack }, service)(dispatch);
+
+    dispatch.should.have.been.called;
+
+    const dispatchedAction = dispatch.firstCall.args[0];
+
+    expect(dispatchedAction.type).to.equal(LOADING);
+    expect(dispatchedAction.payload).to.be.true;
+  });
+
+  it('should call the service', () => {
+    rateBird('bird_id_1', 9, 'comment', { goBack }, service)(dispatch);
+
+    service.should.have.been.called;
+
+    const args = service.firstCall.args;
+
+    expect(args[0]).to.equal('bird_id_1');
+    expect(args[1]).to.equal(9);
+    expect(args[2]).to.equal('comment');
+  });
+
+  it('should dispatch the getBirds action', done => {
+    rateBird('bird_id_1', 9, 'comment', { goBack }, service)(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.calledTwice;
+
+      const dispatchedAction = dispatch.secondCall.args[0];
+
+      expect(dispatchedAction).to.be.instanceOf(Function);
+
+      done();
+    });
+  });
+
+  it('should call the goBack function on success', done => {
+    rateBird('bird_id_1', 9, 'comment', { goBack }, service)(dispatch);
+
+    setImmediate(() => {
+      goBack.should.have.been.called;
+
+      done();
+    });
+  });
+
+  it('should dispatch an error', done => {
+    rateBird('bird_id_1', 9, 'comment', { goBack }, sinon.fake.rejects())(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.calledTwice;
+
+      const dispatchedAction = dispatch.secondCall.args[0];
+
+      expect(dispatchedAction.type).to.equal(ERROR);
+
+      done();
+    })
   });
 });

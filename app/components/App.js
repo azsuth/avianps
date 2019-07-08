@@ -10,10 +10,29 @@ import { getBirds } from 'app/actions/bird';
 
 import 'app/styles/App.scss';
 
-const App = ({ getBirds, numBirds, loading }) => {
+const App = ({ getBirds, numBirds, loading, error }) => {
   useEffect(() => {
     getBirds();
   }, []);
+
+  const renderOverlay = () => {
+    if (error) {
+      return (
+        <div className="App__message-container">
+          <span className="App__message">{error.message}</span>
+          <span className="App__sub-message">Please try again later</span>
+        </div>
+      );
+    }
+
+    if (loading) {
+      return (
+        <div className="App__message-container">
+          <span className="App__message">Loading...</span>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="App">
@@ -30,18 +49,15 @@ const App = ({ getBirds, numBirds, loading }) => {
         </Switch>
       )}
 
-      {loading ? (
-        <div className="App__loading">
-          <h1>Loading...</h1>
-        </div>
-      ) : null}
+      {renderOverlay()}
     </div>
   );
 };
 
 const mapStateToProps = ({ Birds }) => ({
   numBirds: Birds.birds.length,
-  loading: Birds.loading
+  loading: Birds.loading,
+  error: Birds.error
 });
 
 export default connect(

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BPS from 'app/components/BPS';
+import BPS from 'app/components/common/BPS';
 import Bird from 'app/model/bird';
 
 import 'app/styles/BirdRow.scss';

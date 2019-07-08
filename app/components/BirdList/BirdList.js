@@ -34,8 +34,7 @@ const BirdList = ({
 
       <div className="BirdListSort">
         <span className="BirdListSort__label">Sort By:</span>
-
-        {renderSortButtons()}
+        <div className="BirdListSort__buttons">{renderSortButtons()}</div>
       </div>
 
       {birds.map(bird => (

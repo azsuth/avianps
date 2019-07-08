@@ -7,9 +7,29 @@
 }
 
 .BirdListSort {
+  display: inline-flex;
+  flex-direction: column;
   margin-bottom: 2em;
 
-  :not(:last-child) {
-    margin-right: 1em;
+  &__label {
+    align-self: flex-start;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+  }
+
+  &__buttons {
+    :not(:last-child) {
+      margin-right: 1em;
+    }
+
+    @media screen and (max-width: 375px) {
+      display: flex;
+      flex-direction: column;
+
+      :not(:last-child) {
+        margin-bottom: 1em;
+        margin-right: 0;
+      }
+    }
   }
 }

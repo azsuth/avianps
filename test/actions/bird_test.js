@@ -18,13 +18,13 @@ describe('the getBirds function', () => {
   });
 
   it('should call the service', () => {
-    getBirds(() => {}, service)(dispatch);
+    getBirds(service)(dispatch);
 
     service.should.have.been.called;
   });
 
   it('should dispatch the NEW_BIRDS action', done => {
-    getBirds(() => {}, service)(dispatch);
+    getBirds(service)(dispatch);
 
     setImmediate(() => {
       dispatch.should.have.been.called;

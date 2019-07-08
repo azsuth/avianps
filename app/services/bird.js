@@ -51,3 +51,19 @@ export const createScoreService = (
       throw new Error('Error submitting new rating!');
     });
 };
+
+export const deleteScoreService = (id, client = graphQLClient) => {
+  const query = `
+  mutation deleteScore($id: ID!) {
+    deleteScore(id: $id) {
+      id
+    }
+  }`;
+
+  return client
+    .request(query, { id })
+    .then(response => response.deleteScore)
+    .catch(() => {
+      throw new Error('Error deleting rating!');
+    });
+};

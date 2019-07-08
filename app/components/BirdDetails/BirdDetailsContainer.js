@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { navigateToRating } from 'app/actions/bird';
 
-import BirdDetails from './BirdDetails';
+import BirdDetails from 'app/components/BirdDetails/BirdDetails';
 
 const BirdDetailsContainer = ({
   match,

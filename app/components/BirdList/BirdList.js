@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BirdRow from './BirdRow';
+import BirdRow from 'app/components/BirdList/BirdRow';
 
 import 'app/styles/BirdList.scss';
 

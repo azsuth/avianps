@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { navigateToDetails } from 'app/actions/bird';
 
-import BirdList from './BirdList';
+import BirdList from 'app/components/BirdList/BirdList';
 
 const BirdListContainer = ({ birds, navigateToDetails, history }) => {
   const [sortBy, setSortBy] = useState(null);

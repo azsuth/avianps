@@ -34,12 +34,10 @@ describe('the getBirdsService function', () => {
 });
 
 describe('the createScoreService function', () => {
-  const rating = { rating: 8, comment: 'comment', birdId: 'a_bird_id' };
-
   it('should call the client request function', () => {
     const request = sinon.fake.resolves();
 
-    createScoreService(rating, { request });
+    createScoreService('a_bird_id', 8, 'comment', { request });
 
     request.should.have.been.called;
   });
@@ -47,7 +45,7 @@ describe('the createScoreService function', () => {
   it('should return a promise', () => {
     const request = sinon.fake.resolves({ data: { createScore: 'response' } });
 
-    const response = createScoreService(rating, { request });
+    const response = createScoreService('a_bird_id', 8, 'comment', { request });
 
     expect(response).to.be.instanceOf(Promise);
     expect(response.then).to.be.instanceOf(Function);

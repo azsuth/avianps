@@ -11,7 +11,7 @@ import { getBirds } from 'app/actions/bird';
 const App = ({ getBirds, numBirds }) => {
   useEffect(() => {
     getBirds();
-  });
+  }, []);
 
   return (
     <div className="App">

@@ -52,7 +52,7 @@ class Bird {
     const percentPromoters = results.promoters / numScores * 100;
     const percentDetractors = results.detractors / numScores * 100;
 
-    return percentPromoters - percentDetractors;
+    return Math.round(percentPromoters - percentDetractors);
   }
 }
 

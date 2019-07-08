@@ -67,5 +67,18 @@ describe('the bird model', () => {
 
       expect(bird.bps).to.equal(-100);
     });
+
+    it('should round decimals', () => {
+      const ratings = [8, 6, 3];
+
+      const rawBird = {
+        id: 'id_1',
+        scores: ratings.map(rating => ({ rating }))
+      };
+
+      const bird = new Bird(rawBird);
+
+      expect(bird.bps).to.equal(-67);
+    });
   });
 });

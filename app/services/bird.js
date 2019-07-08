@@ -26,7 +26,12 @@ export const getBirdsService = (client = graphQLClient) => {
     .then(rawBirds => rawBirds.map(rawBird => new Bird(rawBird)));
 };
 
-export const createScoreService = (rating, client = graphQLClient) => {
+export const createScoreService = (
+  birdId,
+  rating,
+  comment,
+  client = graphQLClient
+) => {
   const query = `
   mutation createScore($rating: Int!, $comment: String, $birdId: ID!) {
     createScore(rating: $rating, comment: $comment, birdId: $birdId) {
@@ -37,6 +42,6 @@ export const createScoreService = (rating, client = graphQLClient) => {
   }`;
 
   return client
-    .request(query, rating)
-    .then(response => response.data.createScore);
+    .request(query, { birdId, rating, comment })
+    .then(response => response.createScore);
 };

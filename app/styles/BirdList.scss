@@ -5,3 +5,11 @@
     margin: 1em;
   }
 }
+
+.BirdListSort {
+  margin-bottom: 2em;
+
+  :not(:last-child) {
+    margin-right: 1em;
+  }
+}

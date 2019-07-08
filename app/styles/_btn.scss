@@ -19,12 +19,12 @@
     padding: 0;
   }
 
-  &--selected-negative {
-    background-color: lightcoral;
+  &--selected {
+    background-color: lightgray;
   }
 
-  &--selected-neutral {
-    background-color: lightgray;
+  &--selected-negative {
+    background-color: lightcoral;
   }
 
   &--selected-positive {

@@ -23,7 +23,7 @@ const BirdRating = ({ bird, onClickSubmit }) => {
             if (num < 7) {
               className += ' btn--selected-negative';
             } else if (num < 9) {
-              className += ' btn--selected-neutral';
+              className += ' btn--selected';
             } else {
               className += ' btn--selected-positive';
             }

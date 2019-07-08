@@ -31,7 +31,7 @@ const BirdRow = ({ bird, onClickDetails }) => {
       </div>
 
       <button
-        className="BirdRow__details-button"
+        className="BirdRow__details-button btn"
         onClick={() => onClickDetails(id)}
       >
         Details

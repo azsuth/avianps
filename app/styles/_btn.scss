@@ -1,0 +1,44 @@
+@import 'app/styles/_colors.scss';
+
+.btn {
+  display: inline-block;
+  border: 1px solid $color-primary;
+  color: $color-primary;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  transition: all 0.2s;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.3);
+
+  &--round {
+    width: 3em;
+    height: 3em;
+    border-radius: 100em;
+    padding: 0;
+  }
+
+  &--selected-negative {
+    background-color: lightcoral;
+  }
+
+  &--selected-neutral {
+    background-color: lightgray;
+  }
+
+  &--selected-positive {
+    background-color: lightgreen;
+  }
+
+  &:disabled {
+    color: $color-primary-light;
+    border-color: $color-primary-light;
+    font-style: italic;
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 0.125em 0.25em (0, 0, 0, 0.3);
+  }
+}

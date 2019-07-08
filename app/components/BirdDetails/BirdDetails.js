@@ -58,7 +58,7 @@ const BirdDetails = ({ bird, onClickRate }) => {
 
         <div className="BirdDetailsMain__description-container BirdDetails__separator">
           <h2 className="BirdDetailsMain__description-label">Description</h2>
-          <button className="BirdDetailsMain__rate-button" onClick={() => onClickRate(id)}>Rate</button>
+          <button className="BirdDetailsMain__rate-button btn" onClick={() => onClickRate(id)}>Rate</button>
         </div>
         <p className="BirdDetailsMain__description">{description}</p>
 

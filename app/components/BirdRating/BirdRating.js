@@ -17,17 +17,15 @@ const BirdRating = ({ bird, onClickSubmit }) => {
     return (
       <div className="BirdRating__buttons">
         {ratings.map(num => {
-          let className = 'BirdRating__button';
+          let className = 'BirdRating__button btn btn--round';
 
           if (num === rating) {
-            className += ' BirdRating__button--selected';
-
             if (num < 7) {
-              className += '-negative';
+              className += ' btn--selected-negative';
             } else if (num < 9) {
-              className += '-neutral';
+              className += ' btn--selected-neutral';
             } else {
-              className += '-positive';
+              className += ' btn--selected-positive';
             }
           }
 
@@ -65,7 +63,8 @@ const BirdRating = ({ bird, onClickSubmit }) => {
         </label>
 
         <button
-          className="BirdRating__submit-button"
+          className="BirdRating__submit-button btn"
+          disabled={!rating}
           onClick={() => onClickSubmit(id, rating, comment)}
         >
           Submit Rating

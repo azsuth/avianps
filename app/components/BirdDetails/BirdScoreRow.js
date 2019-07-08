@@ -6,10 +6,18 @@ import 'app/styles/BirdScoreRow.scss';
 const BirdScoreRow = ({ score }) => {
   const { rating, comment } = score;
 
+  const renderComment = () => {
+    if (comment) {
+      return <span className="BirdScoreRow__comment">{comment}</span>;
+    }
+
+    return <span className="BirdScoreRow__comment BirdScoreRow__comment--empty">No comment</span>
+  };
+
   return (
     <div className="BirdScoreRow">
       <span className="BirdScoreRow__score">{rating}</span>
-      <span className="BirdScoreRow__comment">{comment}</span>
+      {renderComment()}
     </div>
   );
 };

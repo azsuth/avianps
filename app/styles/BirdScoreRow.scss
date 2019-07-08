@@ -13,5 +13,10 @@
     padding-left: 1em;
     border-left: 1px solid $color-primary;
     width: 95%;
+
+    &--empty {
+      font-style: italic;
+      color: $color-primary-light;
+    }
   }
 }

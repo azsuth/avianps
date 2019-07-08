@@ -1,4 +1,4 @@
-import { NEW_BIRDS } from 'app/actions/types';
+import { NEW_BIRDS, LOADING } from 'app/actions/types';
 
 export const INITIAL_STATE = {
   loading: true,
@@ -14,7 +14,9 @@ export default (state = INITIAL_STATE, action) => {
         return map;
       }, {});
 
-      return { ...state, birds: action.payload, birdsById };
+      return { ...state, birds: action.payload, birdsById, loading: false };
+    case LOADING:
+      return { ...state, loading: action.payload };
     default:
       return state;
   }

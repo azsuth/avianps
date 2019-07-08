@@ -1,6 +1,6 @@
 import { getBirdsService, createScoreService } from 'app/services/bird';
 
-import { NEW_BIRDS } from 'app/actions/types';
+import { NEW_BIRDS, LOADING } from 'app/actions/types';
 
 export const getBirds = (service = getBirdsService) => dispatch => {
   return new Promise(resolve => {
@@ -22,6 +22,11 @@ export const rateBird = (
   history,
   service = createScoreService
 ) => dispatch => {
+  dispatch({
+    type: LOADING,
+    payload: true
+  });
+
   service(birdId, rating, comment)
     .then(() => dispatch(getBirds()))
     .then(() => history.goBack());

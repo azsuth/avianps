@@ -8,7 +8,9 @@ import BirdRatingContainer from 'app/components/BirdRating/BirdRatingContainer';
 
 import { getBirds } from 'app/actions/bird';
 
-const App = ({ getBirds, numBirds }) => {
+import 'app/styles/App.scss';
+
+const App = ({ getBirds, numBirds, loading }) => {
   useEffect(() => {
     getBirds();
   }, []);
@@ -27,12 +29,19 @@ const App = ({ getBirds, numBirds }) => {
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       )}
+
+      {loading ? (
+        <div className="App__loading">
+          <h1>Loading...</h1>
+        </div>
+      ) : null}
     </div>
   );
 };
 
 const mapStateToProps = ({ Birds }) => ({
-  numBirds: Birds.birds.length
+  numBirds: Birds.birds.length,
+  loading: Birds.loading
 });
 
 export default connect(

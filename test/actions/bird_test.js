@@ -4,7 +4,8 @@ import {
   getBirds,
   navigateToDetails,
   navigateToRating,
-  rateBird
+  rateBird,
+  deleteRating
 } from 'app/actions/bird';
 
 import { NEW_BIRDS, ERROR, LOADING } from 'app/actions/types';
@@ -133,7 +134,9 @@ describe('the rateBird function', () => {
   });
 
   it('should dispatch an error', done => {
-    rateBird('bird_id_1', 9, 'comment', { goBack }, sinon.fake.rejects())(dispatch);
+    rateBird('bird_id_1', 9, 'comment', { goBack }, sinon.fake.rejects())(
+      dispatch
+    );
 
     setImmediate(() => {
       dispatch.should.have.been.calledTwice;
@@ -143,6 +146,62 @@ describe('the rateBird function', () => {
       expect(dispatchedAction.type).to.equal(ERROR);
 
       done();
-    })
+    });
+  });
+});
+
+describe('the deleteRating function', () => {
+  let service;
+  let dispatch;
+
+  beforeEach(() => {
+    service = sinon.fake.resolves();
+    dispatch = sinon.fake();
+  });
+
+  it('should dispatch the loading action', () => {
+    deleteRating('rating_id', service)(dispatch);
+
+    dispatch.should.have.been.called;
+
+    const dispatchedAction = dispatch.firstCall.args[0];
+
+    expect(dispatchedAction.type).to.equal(LOADING);
+    expect(dispatchedAction.payload).to.be.true;
+  });
+
+  it('should call the service', () => {
+    deleteRating('rating_id', service)(dispatch);
+
+    service.should.have.been.called;
+    expect(service.firstCall.args[0]).to.equal('rating_id');
+  });
+
+  it('should dispatch the getBirds action', done => {
+    deleteRating('rating_id', service)(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.calledTwice;
+
+      const dispatchedAction = dispatch.secondCall.args[0];
+
+      expect(dispatchedAction).to.be.instanceOf(Function);
+
+      done();
+    });
+  });
+
+  it('should dispatch an error', done => {
+    deleteRating('rating_id', sinon.fake.rejects())(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.calledTwice;
+
+      const dispatchedAction = dispatch.secondCall.args[0];
+
+      expect(dispatchedAction.type).to.equal(ERROR);
+
+      done();
+    });
   });
 });

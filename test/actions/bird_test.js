@@ -5,7 +5,8 @@ import {
   navigateToDetails,
   navigateToRating,
   rateBird,
-  deleteRating
+  deleteRating,
+  updateRating
 } from 'app/actions/bird';
 
 import { NEW_BIRDS, ERROR, LOADING } from 'app/actions/types';
@@ -193,6 +194,85 @@ describe('the deleteRating function', () => {
 
   it('should dispatch an error', done => {
     deleteRating('rating_id', sinon.fake.rejects())(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.calledTwice;
+
+      const dispatchedAction = dispatch.secondCall.args[0];
+
+      expect(dispatchedAction.type).to.equal(ERROR);
+
+      done();
+    });
+  });
+});
+
+describe('the updateRating function', () => {
+  let service;
+  let dispatch;
+  let goBack;
+
+  beforeEach(() => {
+    service = sinon.fake.resolves();
+    dispatch = sinon.fake();
+    goBack = sinon.fake();
+  });
+
+  it('should dispatch the loading action', () => {
+    updateRating('rating_id', 3, 'new comment', { goBack }, service)(dispatch);
+
+    dispatch.should.have.been.called;
+
+    const dispatchedAction = dispatch.firstCall.args[0];
+
+    expect(dispatchedAction.type).to.equal(LOADING);
+    expect(dispatchedAction.payload).to.be.true;
+  });
+
+  it('should call the service', () => {
+    updateRating('rating_id', 3, 'new comment', { goBack }, service)(dispatch);
+
+    service.should.have.been.called;
+
+    const args = service.firstCall.args;
+
+    expect(args[0]).to.equal('rating_id');
+    expect(args[1]).to.equal(3);
+    expect(args[2]).to.equal('new comment');
+  });
+
+  it('should dispatch the getBirds action', done => {
+    updateRating('rating_id', 3, 'new comment', { goBack }, service)(dispatch);
+
+    setImmediate(() => {
+      dispatch.should.have.been.calledTwice;
+
+      const dispatchedAction = dispatch.secondCall.args[0];
+
+      expect(dispatchedAction).to.be.instanceOf(Function);
+
+      done();
+    });
+  });
+
+  it('should call the goBack function on success', done => {
+    updateRating('rating_id', 3, 'new comment', { goBack }, service)(dispatch);
+
+    setImmediate(() => {
+      goBack.should.have.been.called;
+
+      done();
+    });
+  });
+
+  it('should dispatch an error', done => {
+    updateRating(
+      'rating_id',
+      3,
+      'new comment',
+      { goBack },
+      sinon.fake.rejects()
+    )(dispatch);
 
     setImmediate(() => {
       dispatch.should.have.been.calledTwice;

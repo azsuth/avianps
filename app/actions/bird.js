@@ -1,7 +1,8 @@
 import {
   getBirdsService,
   createScoreService,
-  deleteScoreService
+  deleteScoreService,
+  updateScoreService
 } from 'app/services/bird';
 
 import { NEW_BIRDS, LOADING, ERROR } from 'app/actions/types';
@@ -57,6 +58,29 @@ export const deleteRating = (id, service = deleteScoreService) => dispatch => {
 
   service(id)
     .then(() => dispatch(getBirds()))
+    .catch(err => {
+      dispatch({
+        type: ERROR,
+        payload: err
+      });
+    });
+};
+
+export const updateRating = (
+  id,
+  rating,
+  comment,
+  history,
+  service = updateScoreService
+) => dispatch => {
+  dispatch({
+    type: LOADING,
+    payload: true
+  });
+
+  service(id, rating, comment)
+    .then(() => dispatch(getBirds()))
+    .then(() => history.goBack())
     .catch(err => {
       dispatch({
         type: ERROR,

@@ -67,3 +67,26 @@ export const deleteScoreService = (id, client = graphQLClient) => {
       throw new Error('Error deleting rating!');
     });
 };
+
+export const updateScoreService = (
+  id,
+  rating,
+  comment,
+  client = graphQLClient
+) => {
+  const query = `
+  mutation updateScore($id: ID!, $rating: Int!, $comment: String) {
+    updateScore(id: $id, rating: $rating, comment: $comment) {
+      id
+      rating
+      comment
+    }
+  }`;
+
+  return client
+    .request(query, { id, rating, comment })
+    .then(response => response.updateScore)
+    .catch(() => {
+      throw new Error('Error updating rating!');
+    });
+};

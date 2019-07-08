@@ -3,8 +3,10 @@ import sinon from 'sinon';
 import {
   getBirdsService,
   createScoreService,
-  deleteScoreService
+  deleteScoreService,
+  updateScoreService
 } from 'app/services/bird';
+
 import Bird from 'app/model/bird';
 
 describe('the getBirdsService function', () => {
@@ -90,7 +92,7 @@ describe('the deleteScoreService function', () => {
   it('should call the client request function', () => {
     const request = sinon.fake.resolves();
 
-    deleteScoreService('a_bird_id', { request });
+    deleteScoreService('rating_id', { request });
 
     request.should.have.been.called;
   });
@@ -98,7 +100,7 @@ describe('the deleteScoreService function', () => {
   it('should return a promise', done => {
     const request = sinon.fake.resolves({ deleteScore: 'response_1' });
 
-    const response = deleteScoreService('a_bird_id', { request });
+    const response = deleteScoreService('rating_id', { request });
 
     expect(response).to.be.instanceOf(Promise);
 
@@ -111,7 +113,43 @@ describe('the deleteScoreService function', () => {
   it('should throw an error if the request fails', done => {
     const request = sinon.fake.rejects();
 
-    deleteScoreService('a_bird_id', { request })
+    deleteScoreService('rating_id', { request })
+      .then(() => {
+        done(new Error('failed'));
+      })
+      .catch(err => {
+        expect(err).to.be.instanceOf(Error);
+        done();
+      });
+  });
+});
+
+describe('the updateScoreService function', () => {
+  it('should call the client request function', () => {
+    const request = sinon.fake.resolves();
+
+    updateScoreService('rating_id', 7, 'comment', { request });
+
+    request.should.have.been.called;
+  });
+
+  it('should return a promise', done => {
+    const request = sinon.fake.resolves({ updateScore: 'response_1' });
+
+    const response = updateScoreService('rating_id', 7, 'comment', { request });
+
+    expect(response).to.be.instanceOf(Promise);
+
+    response.then(response => {
+      expect(response).to.equal('response_1');
+      done();
+    });
+  });
+
+  it('should throw an error if the request fails', done => {
+    const request = sinon.fake.rejects();
+
+    updateScoreService('rating_id', 7, 'comment', { request })
       .then(() => {
         done(new Error('failed'));
       })

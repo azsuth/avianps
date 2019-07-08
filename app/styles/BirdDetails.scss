@@ -53,15 +53,18 @@
 }
 
 .BirdDetailsInfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  &__conservation-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__conservation-status-label {
+    font-weight: 700;
+  }
 
   &__conservation-status {
     font-style: italic;
     color: $color-primary-light;
-    display: block;
-    text-align: end;
   }
 }
 

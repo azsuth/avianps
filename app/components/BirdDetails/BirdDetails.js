@@ -49,11 +49,16 @@ const BirdDetails = ({ bird, onClickRate }) => {
           Info
         </h2>
         <div className="BirdDetailsInfo">
-          <BPS bps={bps} />
+          <BPS bps={bps} condensed={false} />
 
-          <span className="BirdDetailsInfo__conservation-status">
-            {conservationStatus}
-          </span>
+          <div className="BirdDetailsInfo__conservation-container">
+            <span className="BirdDetailsInfo__conservation-status-label">
+              Status:
+            </span>
+            <span className="BirdDetailsInfo__conservation-status">
+              {conservationStatus}
+            </span>
+          </div>
         </div>
 
         <h2 className="BirdDetailsMain__description-label BirdDetails__separator">
@@ -62,9 +67,7 @@ const BirdDetails = ({ bird, onClickRate }) => {
         <p className="BirdDetailsMain__description">{description}</p>
 
         <div className="BirdDetailsMain__ratings-container BirdDetails__separator">
-          <h2 className="BirdDetailsMain__ratings-label">
-            Ratings
-          </h2>
+          <h2 className="BirdDetailsMain__ratings-label">Ratings</h2>
 
           <button
             className="BirdDetailsMain__rate-button btn"

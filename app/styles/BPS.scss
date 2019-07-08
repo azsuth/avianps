@@ -1,0 +1,9 @@
+.BPS {
+  display: flex;
+  justify-content: space-between;
+
+  &__label {
+    font-weight: 700;
+    margin-right: 0.5em;
+  }
+}

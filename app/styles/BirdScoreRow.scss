@@ -2,21 +2,29 @@
 
 .BirdScoreRow {
   display: flex;
-  
+
   &__score {
     font-weight: 700;
     margin-right: 1em;
     width: 5%;
   }
 
-  &__comment {
+  &__comment-container {
+    display: flex;
+    flex-direction: column;
     padding-left: 1em;
     border-left: 1px solid $color-primary;
     width: 95%;
+  }
 
+  &__comment {
     &--empty {
       font-style: italic;
       color: $color-primary-light;
     }
+  }
+
+  &__actions {
+    margin-top: 0.25em;
   }
 }

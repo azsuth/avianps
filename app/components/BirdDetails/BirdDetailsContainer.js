@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { navigateToRating } from 'app/actions/bird';
+import { navigateToRating, deleteRating } from 'app/actions/bird';
 
 import BirdDetails from 'app/components/BirdDetails/BirdDetails';
 
@@ -9,6 +9,7 @@ const BirdDetailsContainer = ({
   match,
   birdsById,
   navigateToRating,
+  deleteRating,
   history
 }) => {
   const birdId = match.params.birdId;
@@ -16,7 +17,11 @@ const BirdDetailsContainer = ({
 
   const onClickRate = birdId => navigateToRating(birdId, history);
 
-  return <BirdDetails {...{ bird, onClickRate }} />;
+  return (
+    <BirdDetails
+      {...{ bird, onClickRate, onClickDeleteRating: deleteRating }}
+    />
+  );
 };
 
 const mapStateToProps = ({ Birds }) => ({
@@ -25,5 +30,5 @@ const mapStateToProps = ({ Birds }) => ({
 
 export default connect(
   mapStateToProps,
-  { navigateToRating }
+  { navigateToRating, deleteRating }
 )(BirdDetailsContainer);

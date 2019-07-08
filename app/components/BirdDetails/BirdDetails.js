@@ -8,7 +8,7 @@ import BirdScoreRow from 'app/components/BirdDetails/BirdScoreRow';
 
 import 'app/styles/BirdDetails.scss';
 
-const BirdDetails = ({ bird, onClickRate }) => {
+const BirdDetails = ({ bird, onClickRate, onClickDeleteRating }) => {
   const {
     id,
     name,
@@ -24,7 +24,10 @@ const BirdDetails = ({ bird, onClickRate }) => {
     if (scores && scores.length > 0) {
       return scores.map(score => (
         <div className="BirdDetailsScores__row" key={score.id}>
-          <BirdScoreRow score={score} />
+          <BirdScoreRow
+            score={score}
+            onClickDeleteRating={onClickDeleteRating}
+          />
         </div>
       ));
     }
@@ -85,7 +88,8 @@ const BirdDetails = ({ bird, onClickRate }) => {
 
 BirdDetails.propTypes = {
   bird: PropTypes.instanceOf(Bird).isRequired,
-  onClickRate: PropTypes.func.isRequired
+  onClickRate: PropTypes.func.isRequired,
+  onClickDeleteRating: PropTypes.func.isRequired
 };
 
 export default BirdDetails;

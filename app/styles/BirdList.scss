@@ -20,8 +20,10 @@
     :not(:last-child) {
       margin-right: 1em;
     }
+  }
 
-    @media screen and (max-width: 375px) {
+  @media screen and (max-width: 375px) {
+    &__buttons {
       display: flex;
       flex-direction: column;
 

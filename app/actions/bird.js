@@ -96,3 +96,7 @@ export const navigateToDetails = (birdId, history) => () => {
 export const navigateToRating = (birdId, history) => () => {
   history.push(`/${birdId}/rate`);
 };
+
+export const navigateToUpdateRating = (birdId, ratingId, history) => () => {
+  history.push(`/${birdId}/rate/${ratingId}`)
+};

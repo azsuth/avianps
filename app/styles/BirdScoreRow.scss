@@ -26,5 +26,9 @@
 
   &__actions {
     margin-top: 0.25em;
+
+    :not(:last-child) {
+      margin-right: 1em;
+    }
   }
 }

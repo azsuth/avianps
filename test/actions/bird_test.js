@@ -4,6 +4,7 @@ import {
   getBirds,
   navigateToDetails,
   navigateToRating,
+  navigateToUpdateRating,
   rateBird,
   deleteRating,
   updateRating
@@ -73,6 +74,16 @@ describe('the navigateToRating function', () => {
     navigateToRating('bird_id', { push })();
 
     push.should.have.been.calledWith('/bird_id/rate');
+  });
+});
+
+describe('the navigateToUpdateRating function', () => {
+  it('should call push on the history object', () => {
+    const push = sinon.fake();
+
+    navigateToUpdateRating('bird_id', 'rating_id', { push })();
+
+    push.should.have.been.calledWith('/bird_id/rate/rating_id');
   });
 });
 

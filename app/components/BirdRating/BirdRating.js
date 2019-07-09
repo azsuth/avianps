@@ -5,11 +5,12 @@ import Bird from 'app/model/bird';
 
 import 'app/styles/BirdRating.scss';
 
-const BirdRating = ({ bird, onClickSubmit }) => {
+const BirdRating = ({ bird, onClickSubmit, existingScore }) => {
   const { id, name } = bird;
+  const { id: scoreId } = existingScore;
 
-  const [rating, setRating] = useState(null);
-  const [comment, setComment] = useState('');
+  const [rating, setRating] = useState(existingScore.rating);
+  const [comment, setComment] = useState(existingScore.comment);
 
   const renderRatingButtons = () => {
     const ratings = [...Array(11).keys()];
@@ -46,8 +47,13 @@ const BirdRating = ({ bird, onClickSubmit }) => {
   return (
     <div className="BirdRating">
       <header>
-        <h1 className="BirdRating__header">Rate the {name}</h1>
-        <h2 className="BirdRating__sub-header">How likely is it that you would recommend this bird to a friend or collegue?</h2>
+        <h1 className="BirdRating__header">
+          {scoreId ? `Update your ${name} rating` : `Rate the ${name}`}
+        </h1>
+        <h2 className="BirdRating__sub-header">
+          How likely is it that you would recommend this bird to a friend or
+          collegue?
+        </h2>
       </header>
 
       <main>
@@ -67,7 +73,7 @@ const BirdRating = ({ bird, onClickSubmit }) => {
           disabled={!rating}
           onClick={() => onClickSubmit(id, rating, comment)}
         >
-          Submit Rating
+          {scoreId ? 'Update Rating' : 'Submit Rating'}
         </button>
       </main>
     </div>
@@ -76,7 +82,8 @@ const BirdRating = ({ bird, onClickSubmit }) => {
 
 BirdRating.propTypes = {
   bird: PropTypes.instanceOf(Bird).isRequired,
-  onClickSubmit: PropTypes.func.isRequired
+  onClickSubmit: PropTypes.func.isRequired,
+  existingScore: PropTypes.object
 };
 
 export default BirdRating;

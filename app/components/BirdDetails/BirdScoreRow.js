@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 import 'app/styles/BirdScoreRow.scss';
 
-const BirdScoreRow = ({ score, onClickDeleteRating }) => {
+const BirdScoreRow = ({
+  birdId,
+  score,
+  onClickDeleteRating,
+  onClickUpdateRating
+}) => {
   const { id, rating, comment } = score;
 
   const renderComment = () => {
@@ -24,8 +29,15 @@ const BirdScoreRow = ({ score, onClickDeleteRating }) => {
       <div className="BirdScoreRow__comment-container">
         {renderComment()}
         <span className="BirdScoreRow__actions">
+          <button
+            className="btn"
+            onClick={() => onClickUpdateRating(birdId, id)}
+          >
+            Update
+          </button>
+
           <button className="btn" onClick={() => onClickDeleteRating(id)}>
-            Delete Rating
+            Delete
           </button>
         </span>
       </div>
@@ -34,8 +46,10 @@ const BirdScoreRow = ({ score, onClickDeleteRating }) => {
 };
 
 BirdScoreRow.propTypes = {
+  birdId: PropTypes.string.isRequired,
   score: PropTypes.object.isRequired,
-  onClickDeleteRating: PropTypes.func.isRequired
+  onClickDeleteRating: PropTypes.func.isRequired,
+  onClickUpdateRating: PropTypes.func.isRequired
 };
 
 export default BirdScoreRow;

@@ -39,8 +39,7 @@ const App = ({ getBirds, numBirds, loading, error }) => {
       {numBirds > 0 ? (
         <Switch>
           <Route path="/" exact component={BirdListContainer} />
-          <Route path="/:birdId/rate/:scoreId" component={BirdRatingContainer} />
-          <Route path="/:birdId/rate" component={BirdRatingContainer} />
+          <Route path="/:birdId/rate/:scoreId?" component={BirdRatingContainer} />
           <Route path="/:birdId" component={BirdDetailsContainer} />
         </Switch>
       ) : (

@@ -1,4 +1,5 @@
 @import 'app/styles/_colors.scss';
+@import 'app/styles/_device-sizes.scss';
 
 .BirdRating {
   text-align: center;
@@ -34,7 +35,7 @@
     width: 100%;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: $device-large) {
     background-color: $background-color;
     border-radius: unset;
     box-shadow: unset;

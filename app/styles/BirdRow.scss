@@ -1,3 +1,5 @@
+@import 'app/styles/_device-sizes.scss';
+
 .BirdRow {
   display: flex;
   flex-direction: column;
@@ -20,7 +22,7 @@
   &__scientific {
     font-style: italic;
 
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: $device-medium) {
       display: none;
     }
   }

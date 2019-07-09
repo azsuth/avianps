@@ -1,4 +1,5 @@
 @import 'app/styles/_colors.scss';
+@import 'app/styles/_device-sizes.scss';
 
 .BirdDetails {
   font-size: 1.3em;
@@ -11,7 +12,7 @@
     border-bottom: 1px solid $color-primary;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $device-large) {
     display: flex;
   }
 }
@@ -37,7 +38,7 @@
     left: 0;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $device-large) {
     display: flex;
     flex-direction: column;
     width: 40%;
@@ -69,7 +70,7 @@
     font-style: italic;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $device-large) {
     position: unset;
     top: unset;
     left: unset;
@@ -113,7 +114,7 @@
     margin: 0;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $device-large) {
     width: 60%;
   }
 }

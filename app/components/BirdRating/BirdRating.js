@@ -7,10 +7,13 @@ import 'app/styles/BirdRating.scss';
 
 const BirdRating = ({ bird, onClickSubmit, existingScore }) => {
   const { id, name } = bird;
-  const { id: scoreId } = existingScore;
 
-  const [rating, setRating] = useState(existingScore.rating);
-  const [comment, setComment] = useState(existingScore.comment);
+  const [rating, setRating] = useState(
+    existingScore ? existingScore.rating : null
+  );
+  const [comment, setComment] = useState(
+    existingScore ? existingScore.comment : ''
+  );
 
   const renderRatingButtons = () => {
     const ratings = [...Array(11).keys()];
@@ -48,7 +51,7 @@ const BirdRating = ({ bird, onClickSubmit, existingScore }) => {
     <div className="BirdRating">
       <header>
         <h1 className="BirdRating__header">
-          {scoreId ? `Update your ${name} rating` : `Rate the ${name}`}
+          {existingScore ? `Update your ${name} rating` : `Rate the ${name}`}
         </h1>
         <h2 className="BirdRating__sub-header">
           How likely is it that you would recommend this bird to a friend or
@@ -70,10 +73,10 @@ const BirdRating = ({ bird, onClickSubmit, existingScore }) => {
 
         <button
           className="BirdRating__submit-button btn"
-          disabled={!rating}
+          disabled={rating === null}
           onClick={() => onClickSubmit(id, rating, comment)}
         >
-          {scoreId ? 'Update Rating' : 'Submit Rating'}
+          {existingScore ? 'Update Rating' : 'Submit Rating'}
         </button>
       </main>
     </div>

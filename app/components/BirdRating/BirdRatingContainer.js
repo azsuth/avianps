@@ -19,7 +19,7 @@ const BirdRatingContainer = ({
   const existingScore = bird.scores.find(score => score.id === scoreId);
 
   const onClickSubmit = (birdId, rating, comment) => {
-    if (existingScore.id) {
+    if (existingScore) {
       updateRating(existingScore.id, rating, comment, history);
     } else {
       rateBird(birdId, rating, comment, history);

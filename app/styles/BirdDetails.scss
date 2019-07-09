@@ -10,6 +10,10 @@
     margin-top: 1em;
     border-bottom: 1px solid $color-primary;
   }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 }
 
 .BirdDetailsHeader {
@@ -32,6 +36,20 @@
     bottom: 0;
     left: 0;
   }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+    &__image {
+      order: 1;
+    }
+
+    &__screen {
+      display: none;
+    }
+  }
 }
 
 .BirdDetailsName {
@@ -49,6 +67,15 @@
   &__scientific {
     margin: 0;
     font-style: italic;
+  }
+
+  @media screen and (min-width: 768px) {
+    position: unset;
+    top: unset;
+    left: unset;
+    transform: unset;
+    order: 0;
+    margin: 1em 0;
   }
 }
 
@@ -85,6 +112,10 @@
   &__ratings-label {
     margin: 0;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 60%;
+  }
 }
 
 .BirdDetailsScores {
@@ -97,38 +128,5 @@
   &__empty {
     font-style: italic;
     color: $color-primary-light;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .BirdDetails {
-    display: flex;
-  }
-
-  .BirdDetailsHeader {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-
-    &__screen {
-      display: none;
-    }
-
-    &__image {
-      order: 1;
-    }
-  }
-
-  .BirdDetailsName {
-    position: unset;
-    top: unset;
-    left: unset;
-    transform: unset;
-    order: 0;
-    margin: 1em 0;
-  }
-
-  .BirdDetailsMain {
-    width: 60%;
   }
 }

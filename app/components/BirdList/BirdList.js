@@ -9,7 +9,7 @@ const BirdList = ({
   birds,
   onClickDetails,
   onClickRate,
-  onSortBy,
+  sortByChanged,
   sortBy,
   sortTypes
 }) => {
@@ -21,7 +21,7 @@ const BirdList = ({
           'BirdListSort__button btn' +
           (sortBy === sortType.key ? ' btn--selected' : '')
         }
-        onClick={() => onSortBy(sortType.key)}
+        onClick={() => sortByChanged(sortType.key)}
       >
         {sortType.value}
       </button>
@@ -54,7 +54,7 @@ BirdList.propTypes = {
   birds: PropTypes.array.isRequired,
   onClickDetails: PropTypes.func.isRequired,
   onClickRate: PropTypes.func.isRequired,
-  onSortBy: PropTypes.func.isRequired,
+  sortByChanged: PropTypes.func.isRequired,
   sortBy: PropTypes.string,
   sortTypes: PropTypes.arrayOf(PropTypes.object).isRequired
 };

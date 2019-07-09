@@ -5,7 +5,12 @@ import {
   updateScoreService
 } from 'app/services/bird';
 
-import { NEW_BIRDS, LOADING, ERROR } from 'app/actions/types';
+import { NEW_BIRDS, LOADING, ERROR, SORT_BY_CHANGED } from 'app/actions/types';
+
+export const sortByChanged = sortBy => ({
+  type: SORT_BY_CHANGED,
+  payload: sortBy
+});
 
 export const getBirds = (service = getBirdsService) => dispatch => {
   return new Promise(resolve => {
@@ -98,5 +103,5 @@ export const navigateToRating = (birdId, history) => () => {
 };
 
 export const navigateToUpdateRating = (birdId, ratingId, history) => () => {
-  history.push(`/${birdId}/rate/${ratingId}`)
+  history.push(`/${birdId}/rate/${ratingId}`);
 };

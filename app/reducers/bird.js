@@ -1,10 +1,11 @@
-import { NEW_BIRDS, LOADING, ERROR } from 'app/actions/types';
+import { NEW_BIRDS, LOADING, ERROR, SORT_BY_CHANGED } from 'app/actions/types';
 
 export const INITIAL_STATE = {
   loading: true,
   birds: [],
   birdsById: {},
-  error: null
+  error: null,
+  sortBy: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,6 +21,11 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: action.payload };
     case ERROR:
       return { ...state, error: action.payload };
+    case SORT_BY_CHANGED:
+      return {
+        ...state,
+        sortBy: action.payload === state.sortBy ? null : action.payload
+      };
     default:
       return state;
   }

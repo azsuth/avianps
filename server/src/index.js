@@ -7,7 +7,7 @@ const resolvers = {
       return ctx.prisma.birds({}, info)
     },
     bird(parent, { id }, ctx, info) {
-      return ctx.prisma.bird({ where: { id } }, info)
+      return ctx.prisma.bird({ id }, info)
     },
     scoresByBird(parent, { id }, ctx, info) {
       return ctx.prisma.scores({
